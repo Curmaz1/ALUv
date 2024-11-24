@@ -102,9 +102,9 @@ module division #(parameter IN_WIDTH = 8, parameter OUT_WIDTH = 2*IN_WIDTH) (
 endmodule : division
 
 
-module ALU #(parameter IN_WIDTH = 8, parameter OPCODE_WIDTH = 4) (
+module ALU #(parameter IN_WIDTH = 8) (
     input wire [IN_WIDTH-1:0] a, b,
-    input wire [OPCODE_WIDTH-1:0] opcode,
+    input wire [3:0] opcode,
 	output wire [IN_WIDTH*2-1:0] result,
   	output wire a_greater_out, a_equal_out, a_less_out
 );

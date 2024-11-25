@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.runs/synth_1'
+HD_PWD='C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

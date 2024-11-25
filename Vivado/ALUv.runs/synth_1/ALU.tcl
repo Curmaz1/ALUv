@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.runs/synth_1/ALU.tcl"
+  variable script "C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.runs/synth_1/ALU.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,26 +56,21 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param synth.incrementalSynthesisCache C:/Users/jesue/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-5080-ChutsE_PC/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z010clg400-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.cache/wt [current_project]
-set_property parent.project_path C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.xpr [current_project]
+set_property webtalk.parent_dir {C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.cache/wt} [current_project]
+set_property parent.project_path {C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.cache/ip [current_project]
+set_property ip_output_repo {c:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib -sv C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.srcs/sources_1/new/ALU.sv
+read_verilog -library xil_defaultlib -sv {{C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sources_1/new/ALU.sv}}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -87,7 +82,7 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 }
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/jesue/Documents/Cinvestav/DisenoDigital/ALUv/ALUv.srcs/utils_1/imports/synth_1/ALU.dcp
+read_checkpoint -auto_incremental -incremental {C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/utils_1/imports/synth_1/ALU.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

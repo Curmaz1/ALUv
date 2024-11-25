@@ -1,0 +1,7 @@
+0.7
+2020.2
+May 22 2024
+19:03:11
+C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.sim/sim_1/behav/xsim/glbl.v,1708598507,verilog,,,,glbl,,uvm,,,,,,
+C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv,1732573213,systemVerilog,,,,ALU_intf;ALU_tb,,uvm,,,,,,
+C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sources_1/new/ALU.sv,1732551131,systemVerilog,,C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv,,ALU;adder;bitwise_and;bitwise_or;bitwise_xor;comparator;division;left_shift;multiplicator;right_shift;substractor,,uvm,,,,,,

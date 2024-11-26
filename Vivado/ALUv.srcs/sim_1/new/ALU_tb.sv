@@ -40,13 +40,13 @@ module ALU_tb;
      
 // ************************************ DEF TESTS BEGIN ************************************
 
-   //`define TEST1
-   `define TEST2
-   //`define TEST3
-   //`define TEST4
-   //`define TEST5
-   
- `ifdef TEST1 
+//`define TEST1
+//`define TEST2
+//`define TEST3
+`define TEST4
+//`define TEST5
+
+`ifdef TEST1 
     // Prueba 3 - 
     //////////////////////////////////////////////
     // 2. Generar 1000 operaciones              //
@@ -54,25 +54,12 @@ module ALU_tb;
     //////////////////////////////////////////////
     initial begin
         repeat(100) begin
-        @(posedge clk); 
-            ALU_intf_i.a_b_op_random(); 
+            @(posedge clk); 
+                ALU_intf_i.a_b_op_random(); 
         end     
     end
-  `endif 
+`endif 
   
-  `ifdef TEST1 
-    // Prueba 1 - 
-    //////////////////////////////////////////////
-    // 1. Generar 1000 operaciones              //
-    // con valores random                       //
-    //////////////////////////////////////////////
-    initial begin
-        repeat(1000) begin
-        @(posedge clk); 
-            ALU_intf_i.a_b_op_random(); 
-        end     
-    end
-  `endif   
 `ifdef TEST2 
     // Prueba 2 - 
     ////////////////////////////////////////////////
@@ -102,10 +89,59 @@ module ALU_tb;
                 @(posedge clk);  
                     ALU_intf_i.div_a_b_random();       
             end
-      @(posedge clk); 
-        $finish;     
+        @(posedge clk); 
+            $finish;     
     end
-  `endif  
+`endif  
+
+`ifdef TEST3
+    // Prueba 3 - 
+    ////////////////////////////////////////////////
+    // 1. Generar 20 sumas con ceros              //                   
+    // 2. Generar 20 restas con ceros             //
+    // 3. Generar 20 multiplicaciones con ceros   //
+    ////////////////////////////////////////////////
+    initial begin
+        repeat(20)      // 1. suma
+            begin
+                @(posedge clk);  
+                    ALU_intf_i.add_a_b_zero();            
+            end
+        repeat(20)      // 2. resta
+            begin
+                @(posedge clk); 
+                    ALU_intf_i.sub_a_b_zero();              
+            end
+        repeat(20)       // 3. mul
+            begin
+                @(posedge clk);      
+                    ALU_intf_i.mul_a_b_zero();
+            end        
+        @(posedge clk); 
+            $finish;     
+        end
+`endif 
+`ifdef TEST4
+    // Prueba 4 - 
+    ////////////////////////////////////////////////
+    // 1. Generar 300 operaciones con a = 0       //                   
+    // 2. Generar 3000 operaciones con b = 0      //
+    ////////////////////////////////////////////////
+    initial begin
+        repeat(300)      // 1. suma
+            begin
+                @(posedge clk);  
+                    ALU_intf_i.a_zero_b_op_random();            
+            end
+        repeat(300)      // 2. resta
+            begin
+                @(posedge clk); 
+                    ALU_intf_i.b_zero_a_op_random();              
+            end        
+        @(posedge clk); 
+            $finish;     
+        end
+`endif 
 
 // ************************************* DEF TESTS END *************************************  
 endmodule
@@ -144,5 +180,31 @@ interface  ALU_intf #(parameter WIDTH = 8) ();
         std::randomize(a);
         std::randomize(b);      
         opcode = 9;      
-    endfunction       
+    endfunction   
+    function add_a_b_zero(); 
+        a = 0;
+        b = 0;      
+        opcode = 0;    
+    endfunction    
+     function sub_a_b_zero(); 
+        a = 0;
+        b = 0;      
+        opcode = 1;     
+     endfunction    
+     function mul_a_b_zero(); 
+        a = 0;
+        b = 0;      
+        opcode = 8;
+     endfunction  
+    function a_zero_b_op_random(); 
+        a = 0;
+        std::randomize(b);      
+        std::randomize(opcode);
+    endfunction          
+    function b_zero_a_op_random(); 
+        std::randomize(a);
+        b = 0;      
+        std::randomize(opcode);      
+    endfunction 
+     
 endinterface: ALU_intf

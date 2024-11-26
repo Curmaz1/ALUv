@@ -5,18 +5,12 @@ Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:129]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:130]
-WARNING: [VRFC 10-3597] non-void function 'add_a_b_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:88]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:134]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:135]
-WARNING: [VRFC 10-3597] non-void function 'sub_a_b_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:93]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:139]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:140]
-WARNING: [VRFC 10-3597] non-void function 'mul_a_b_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:98]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:144]
-WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:145]
-WARNING: [VRFC 10-3597] non-void function 'div_a_b_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:103]
+WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:201]
+WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:202]
+WARNING: [VRFC 10-3597] non-void function 'a_zero_b_op_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:134]
+WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:205]
+WARNING: [VRFC 10-3597] non-void function 'randomize' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:207]
+WARNING: [VRFC 10-3597] non-void function 'b_zero_a_op_random' called as a task without void casting [C:/Users/Luis Alfredo/Documents/GitHub/ALUv/Vivado/ALUv.srcs/sim_1/new/ALU_tb.sv:139]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

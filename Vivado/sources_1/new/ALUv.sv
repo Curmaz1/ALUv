@@ -23,11 +23,11 @@ module ALUv #(
     parameter ALUs_num = 4,
     parameter INPUT_WIDTH = 8
 )(
-    input [INPUT_WIDTH-1:0] A [ALUs_num],
-    input [INPUT_WIDTH-1:0] B [ALUs_num],
+    input [INPUT_WIDTH-1:0] A, B [ALUs_num],
     input enable,
     input [3:0] opcode,
-    output [2*INPUT_WIDTH-1:0] result [ALUs_num]
+    output [2*INPUT_WIDTH-1:0] result [ALUs_num],
+    output [ALUs_num-1:0] a_greater_out, a_equal_out, a_less_out
 );
     genvar i;
     generate
@@ -37,7 +37,10 @@ module ALUv #(
                 .b(B[i]),
                 .enable(enable),
                 .opcode(opcode),
-                .result(result[i])
+                .result(result[i]),
+                .a_equal_out(a_equal_out[i]),
+                .a_greater_out(a_greater_out[i]),
+                .a_less_out(a_less_out[i])
             );
         end
     endgenerate

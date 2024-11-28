@@ -105,7 +105,8 @@ endmodule : division
 module ALU #(parameter IN_WIDTH = 8) (
     input wire [IN_WIDTH-1:0] a, b,
     input wire [3:0] opcode,
-	output wire [IN_WIDTH*2-1:0] result,
+    input wire enable,
+	  output wire [IN_WIDTH*2-1:0] result,
   	output wire a_greater_out, a_equal_out, a_less_out
 );
     parameter OUT_WIDTH = IN_WIDTH*2;
@@ -173,19 +174,20 @@ module ALU #(parameter IN_WIDTH = 8) (
     .division(result_div)
     );
 
-  assign  a_greater_out = (opcode == 4'b0101) & a_greater ? 1'b1 : 1'b0;
-  assign  a_equal_out = (opcode == 4'b0101) & a_equal ? 1'b1 : 1'b0;
-  assign  a_less_out = (opcode == 4'b0101) & a_less ? 1'b1 : 1'b0;
-  
-    assign result = (opcode == 4'b0000) ? result_add :
-                    (opcode == 4'b0001) ? result_sub :
-                    (opcode == 4'b0010) ? result_and :
-                    (opcode == 4'b0011) ? result_or :
-                    (opcode == 4'b0100) ? result_xor :
-      				(opcode == 4'b0110) ? result_l_shift :
-      				(opcode == 4'b0111) ? result_r_shift :
-      				(opcode == 4'b1000) ? result_mul :
-      				(opcode == 4'b1001) ? result_div :
-                    {OUT_WIDTH{1'b0}};
+assign result = enable ? (opcode == 4'b0000 ? result_add :
+                          opcode == 4'b0001 ? result_sub :
+                          opcode == 4'b0010 ? result_and :
+                          opcode == 4'b0011 ? result_or :
+                          opcode == 4'b0100 ? result_xor :
+                          opcode == 4'b0101 ? result_l_shift :
+                          opcode == 4'b0110 ? result_r_shift :
+                          opcode == 4'b0111 ? result_mul :
+                          opcode == 4'b1000 ? result_div : {OUT_WIDTH{1'b0}})
+                        : {OUT_WIDTH{1'b0}};
+
+assign a_greater_out = enable ? a_greater : 1'b0;
+assign a_equal_out = enable ? a_equal : 1'b0;
+assign a_less_out = enable ? a_less : 1'b0;
+
 endmodule : ALU
 

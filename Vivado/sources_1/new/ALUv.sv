@@ -25,6 +25,7 @@ module ALUv #(
 )(
     input [INPUT_WIDTH-1:0] A [ALUs_num],
     input [INPUT_WIDTH-1:0] B [ALUs_num],
+    input enable,
     input [3:0] opcode,
     output [2*INPUT_WIDTH-1:0] result [ALUs_num]
 );
@@ -34,6 +35,7 @@ module ALUv #(
             ALU #(INPUT_WIDTH) alu_inst (
                 .a(A[i]),
                 .b(B[i]),
+                .enable(enable),
                 .opcode(opcode),
                 .result(result[i])
             );

@@ -185,9 +185,9 @@ assign result = enable ? (opcode == 4'b0000 ? result_add :
                           opcode == 4'b1000 ? result_div : {OUT_WIDTH{1'b0}})
                         : {OUT_WIDTH{1'b0}};
 
-assign a_greater_out = enable ? a_greater : 1'b0;
-assign a_equal_out = enable ? a_equal : 1'b0;
-assign a_less_out = enable ? a_less : 1'b0;
+assign a_greater_out = enable && (opcode == 4'b1001) ? a_greater : 1'b0;
+assign a_equal_out = enable && (opcode == 4'b1001) ? a_equal : 1'b0;
+assign a_less_out = enable && (opcode == 4'b1001) ? a_less : 1'b0;
 
 endmodule : ALU
 

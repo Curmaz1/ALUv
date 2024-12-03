@@ -43,8 +43,8 @@ module ALU_tb;
 //`define TEST1
 //`define TEST2
 //`define TEST3
-`define TEST4
-//`define TEST5
+//`define TEST4
+`define TEST5
 
 `ifdef TEST1 
     // Prueba 3 - 
@@ -53,14 +53,14 @@ module ALU_tb;
     // con valores random                       //
     //////////////////////////////////////////////
     initial begin
-        repeat(100) begin
+        repeat(1000) begin
             @(posedge clk); 
                 ALU_intf_i.a_b_op_random(); 
         end     
     end
-`endif 
+
   
-`ifdef TEST2 
+`elsif TEST2 
     // Prueba 2 - 
     ////////////////////////////////////////////////
     // 1. Generar 100 sumas aleatorias            //                   
@@ -92,9 +92,8 @@ module ALU_tb;
         @(posedge clk); 
             $finish;     
     end
-`endif  
 
-`ifdef TEST3
+`elsif TEST3
     // Prueba 3 - 
     ////////////////////////////////////////////////
     // 1. Generar 20 sumas con ceros              //                   
@@ -120,8 +119,8 @@ module ALU_tb;
         @(posedge clk); 
             $finish;     
         end
-`endif 
-`ifdef TEST4
+        
+`elsif TEST4
     // Prueba 4 - 
     ////////////////////////////////////////////////
     // 1. Generar 300 operaciones con a = 0       //                   
@@ -140,11 +139,42 @@ module ALU_tb;
             end        
         @(posedge clk); 
             $finish;     
-        end
-`endif 
+        end 
+
+`elsif TEST5
+
+`endif
 
 // ************************************* DEF TESTS END *************************************  
+
+covergroup add_cg @(posedge clk);
+    a_cp:coverpoint ALU_intf_i.a{
+        bins a[] = {[0:255]};
+    }
+    b_cp:coverpoint ALU_intf_i.b{
+        bins b[] = {[0:255]};
+    }
+    result_cp: coverpoint ALU_intf_i.result{
+    bins result[] = {[0:65535]};
+    }
+    a_gt_cp: coverpoint ALU_intf_i.a_greater_out{
+    bins result[] = {[0:1]};
+    }    
+    a_et_cp: coverpoint ALU_intf_i.a_equal_out{
+    bins result[] = {[0:1]};
+    }     
+    a_lt_cp: coverpoint ALU_intf_i.a_less_out{
+    bins result[] = {[0:1]};
+    }   
+    a_opcode_cp: coverpoint ALU_intf_i.opcode{
+    bins result[] = {[0:1]};
+    }       
+endgroup
+
+  cg_adder cg_inst = new();
+
 endmodule
+
 
 // ************************************ Interface start ************************************
 
@@ -159,7 +189,7 @@ interface  ALU_intf #(parameter WIDTH = 8) ();
     function a_b_op_random(); 
         std::randomize(a);
         std::randomize(b);      
-        std::randomize(opcode);      
+        std::randomize(opcode) with{opcode<'h10;};   
     endfunction
     function add_a_b_random(); 
         std::randomize(a);
@@ -199,12 +229,12 @@ interface  ALU_intf #(parameter WIDTH = 8) ();
     function a_zero_b_op_random(); 
         a = 0;
         std::randomize(b);      
-        std::randomize(opcode);
+        std::randomize(opcode) with{opcode<'h10;};
     endfunction          
     function b_zero_a_op_random(); 
         std::randomize(a);
         b = 0;      
-        std::randomize(opcode);      
+        std::randomize(opcode) with{opcode<'h10;};     
     endfunction 
      
 endinterface: ALU_intf
